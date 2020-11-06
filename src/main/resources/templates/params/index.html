@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="'Enviar parametros con Request'"></title>
+</head>
+<body>
+
+<ul>
+    <li><a th:href="@{/params/string(texto='enviadato')}">Envio de un parametro en texto=HolaMan</a></li>
+    <li><a th:href="@{/params/string(texto='Que tal John')}">Envio de un parametro en texto=HolaManJohn</a></li>
+    <li><a th:href="@{/params/multi-params(saludo='Que tal Juan',numero=10)}">Envio multiple de parametros</a></li>
+    <li><a th:href="@{/params/multi-request(saludo='Que tal Juan',numero=10)}">Envio multiple de parametros no use</a></li>
+</ul>
+
+</body>
+</html>
