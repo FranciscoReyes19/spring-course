@@ -1,5 +1,6 @@
 package spring.springcourse.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,18 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    @GetMapping( {"/","/index", "/home" })
+    @Value("${texto.indexcontroller.index.titulo}")
+    private String textoIndex;
+
+    @Value("${texto.indexcontroller.perfil.titulo}")
+    private String textoPerfil;
+
+    @Value("${texto.indexcontroller.listar.titulo}")
+    private String textoListar;
+
+    @GetMapping( {"/index", "/home" })
     public String index(Model model){
-        model.addAttribute("titulo", "hola spring Framework!");
+        model.addAttribute("titulo", textoIndex);
         return "index";
 
     }
@@ -28,14 +38,14 @@ public class IndexController {
         usuario.setEmail("fran@live.com");
 
         model.addAttribute("usuario", usuario);
-        model.addAttribute("titulo", "Perfil de usuario:".concat(usuario.getNombre()));
+        model.addAttribute("titulo", textoPerfil.concat(usuario.getNombre()));
 
         return "perfil";
     }
 
     @RequestMapping("/listar")
     public String listar(Model model){
-        model.addAttribute("titulo","listado de usuarios");
+        model.addAttribute("titulo",textoListar);
         return "listar";
     }
 
@@ -48,7 +58,6 @@ public class IndexController {
         usuarios.add(new Usuario("Pedro","Tornado","tornado@live.com"));
 
         return usuarios;
-
     }
 
 }
